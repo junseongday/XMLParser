@@ -13,6 +13,12 @@
 		5B94522024B6062100FF04DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B94521E24B6062100FF04DB /* Main.storyboard */; };
 		5B94522224B6062300FF04DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B94522124B6062300FF04DB /* Assets.xcassets */; };
 		5B94522524B6062300FF04DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B94522324B6062300FF04DB /* LaunchScreen.storyboard */; };
+		5B94522D24B6071C00FF04DB /* WetherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B94522C24B6071C00FF04DB /* WetherCell.swift */; };
+		5B94523424B60B8F00FF04DB /* blizzard.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B94522F24B60B8F00FF04DB /* blizzard.png */; };
+		5B94523524B60B8F00FF04DB /* snow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B94523024B60B8F00FF04DB /* snow.png */; };
+		5B94523624B60B8F00FF04DB /* sunny.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B94523124B60B8F00FF04DB /* sunny.png */; };
+		5B94523724B60B8F00FF04DB /* rainy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B94523224B60B8F00FF04DB /* rainy.png */; };
+		5B94523824B60B8F00FF04DB /* cloudy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B94523324B60B8F00FF04DB /* cloudy.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +30,12 @@
 		5B94522124B6062300FF04DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B94522424B6062300FF04DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B94522624B6062300FF04DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B94522C24B6071C00FF04DB /* WetherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WetherCell.swift; sourceTree = "<group>"; };
+		5B94522F24B60B8F00FF04DB /* blizzard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blizzard.png; sourceTree = "<group>"; };
+		5B94523024B60B8F00FF04DB /* snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow.png; sourceTree = "<group>"; };
+		5B94523124B60B8F00FF04DB /* sunny.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sunny.png; sourceTree = "<group>"; };
+		5B94523224B60B8F00FF04DB /* rainy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rainy.png; sourceTree = "<group>"; };
+		5B94523324B60B8F00FF04DB /* cloudy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloudy.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +68,29 @@
 		5B94521724B6062100FF04DB /* XMLParser */ = {
 			isa = PBXGroup;
 			children = (
+				5B94522E24B60B6F00FF04DB /* Resource */,
 				5B94521824B6062100FF04DB /* AppDelegate.swift */,
 				5B94521A24B6062100FF04DB /* SceneDelegate.swift */,
 				5B94521C24B6062100FF04DB /* ViewController.swift */,
 				5B94521E24B6062100FF04DB /* Main.storyboard */,
+				5B94522C24B6071C00FF04DB /* WetherCell.swift */,
 				5B94522124B6062300FF04DB /* Assets.xcassets */,
 				5B94522324B6062300FF04DB /* LaunchScreen.storyboard */,
 				5B94522624B6062300FF04DB /* Info.plist */,
 			);
 			path = XMLParser;
+			sourceTree = "<group>";
+		};
+		5B94522E24B60B6F00FF04DB /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				5B94522F24B60B8F00FF04DB /* blizzard.png */,
+				5B94523324B60B8F00FF04DB /* cloudy.png */,
+				5B94523224B60B8F00FF04DB /* rainy.png */,
+				5B94523024B60B8F00FF04DB /* snow.png */,
+				5B94523124B60B8F00FF04DB /* sunny.png */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +152,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B94522524B6062300FF04DB /* LaunchScreen.storyboard in Resources */,
+				5B94523624B60B8F00FF04DB /* sunny.png in Resources */,
+				5B94523524B60B8F00FF04DB /* snow.png in Resources */,
+				5B94523424B60B8F00FF04DB /* blizzard.png in Resources */,
 				5B94522224B6062300FF04DB /* Assets.xcassets in Resources */,
+				5B94523824B60B8F00FF04DB /* cloudy.png in Resources */,
+				5B94523724B60B8F00FF04DB /* rainy.png in Resources */,
 				5B94522024B6062100FF04DB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +171,7 @@
 			files = (
 				5B94521D24B6062100FF04DB /* ViewController.swift in Sources */,
 				5B94521924B6062100FF04DB /* AppDelegate.swift in Sources */,
+				5B94522D24B6071C00FF04DB /* WetherCell.swift in Sources */,
 				5B94521B24B6062100FF04DB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
