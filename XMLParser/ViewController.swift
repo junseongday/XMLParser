@@ -8,23 +8,48 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, XMLParserDelegate {
-    var dataList = [[String:String]]()
-    var detailData = [String:String]()
-    var elementTemp:String = ""
-    var blank:Bool = false
+struct Weather:Decodable {
+    let country:String
+    let weather:String
+    let temperature:String
+}
+
+class ViewController: UIViewController, UITableViewDataSource {
+    var datalist = [Weather]()
+    @IBOutlet weak var mainTableView: UITableView!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataList.count
+        return datalist.count
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let jsonURLString = "https://raw.githubusercontent.com/ChoiJinYoung/iphonewithswift2/master/swift4weather.json"
+        guard let jsonURL = URL(string: jsonURLString) else {
+            return
+        }
+        URLSession.shared.dataTask(with: jsonURL, completionHandler: {(data, response, error) -> Void in
+            guard let data = data else {return}
+            do {
+                self.datalist = try JSONDecoder().decode([Weather].self, from: data)
+//                print(self.datalist)
+//                self.mainTableView.reloadData()
+                DispatchQueue.main.async(execute: {
+                    self.mainTableView.reloadData()
+                })
+            } catch let jsonErr {
+                print("Parsing erro \(jsonErr)")
+            }
+            }).resume()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! WetherCell
-        let dictTemp = dataList[indexPath.row]
-        cell.countryLabel.text = dictTemp["country"]
-        let weatherStr = dictTemp["weather"]
+        let structTemp = datalist[indexPath.row]
+        cell.countryLabel.text = structTemp.country
+        let weatherStr = structTemp.weather
         cell.weatherLabel.text = weatherStr
-        cell.temperatureLabel.text = dictTemp["temperature"]
+        cell.temperatureLabel.text = structTemp.temperature
         if weatherStr == "맑음" {
             cell.imgView.image = UIImage(named: "sunny.png")
         } else if weatherStr == "비" {
@@ -38,48 +63,6 @@ class ViewController: UIViewController, UITableViewDataSource, XMLParserDelegate
         }
         return cell
     }
-    
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let urlString = "https://raw.githubusercontent.com/ChoiJinYoung/iphonewithswift2/master/weather.xml"
-        guard let baseURL = URL(string: urlString) else {
-            print("ULR error")
-            return
-        }
-        
-        guard let parser = XMLParser(contentsOf: baseURL) else {
-            print("Can't read data")
-            return
-        }
-        
-        parser.delegate = self
-        if !parser.parse() {
-            print("Parse failure")
-        }
-    }
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        elementTemp = elementName
-        blank = true
-        print("start : \(elementName)")
-    }
-    
-    func parser(_ parser: XMLParser, foundCharacters string: String) {
-        if blank == true && elementTemp != "local" && elementTemp != "weatherinfo" {
-            detailData[elementTemp] = string.trimmingCharacters(in: .whitespacesAndNewlines)
-        }
-        print("string : \(string)")
-        print("detailData : \(detailData)")
-
-    }
-    
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if elementName == "local" {
-            dataList += [detailData]
-        }
-        blank = false
-    }
-
 
 }
 
